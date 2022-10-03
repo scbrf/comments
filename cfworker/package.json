@@ -1,0 +1,17 @@
+{
+  "name": "comments",
+  "version": "0.0.1",
+  "devDependencies": {
+    "jest": "^29.1.2",
+    "wrangler": "2.1.9"
+  },
+  "private": true,
+  "scripts": {
+    "start": "wrangler dev",
+    "deploy": "wrangler publish",
+    "test": "jest"
+  },
+  "dependencies": {
+    "ethers": "^5.7.1"
+  }
+}

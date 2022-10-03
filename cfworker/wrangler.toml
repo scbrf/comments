@@ -1,0 +1,15 @@
+name = "comments"
+main = "src/index.js"
+compatibility_date = "2022-10-01"
+node_compat = true
+
+kv_namespaces = [
+    { binding = "comments", preview_id = "4a107c77870149fd8a57a60a0cb8f269", id = "bd773581318344018be27d381c21ef42" }
+]
+
+[durable_objects]
+bindings = [{name = "Gateway", class_name = "Comments"}]
+
+[[migrations]]
+tag = "v1" # Should be unique for each entry
+new_classes = ["Comments"]

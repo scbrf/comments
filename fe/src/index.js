@@ -54,10 +54,18 @@ class ScbrfComments {
       if (this.trusted) {
         console.log("Trusted by", this.trusted);
       }
+      if (window.ethereum.address) {
+        this.account = window.ethereum.address;
+        console.log("this account set to", this.account);
+      }
     }
   }
 
   async markReaded() {
+    if (this.config.author === this.account) {
+      console.log("author can not mark read!");
+      return;
+    }
     if (this.config.notMarkRead) return;
     if (this.markReadDone) return;
     this.markReadDone = true;
@@ -95,6 +103,8 @@ class ScbrfComments {
         document.querySelector(
           ".scbrf-comments-helper"
         ).innerHTML = `* 您的浏览器不支持发布状态或者评论`;
+      } else {
+        document.querySelector(".scbrf-comments-helper").style.display = "none";
       }
     }
   }
@@ -304,14 +314,16 @@ class ScbrfComments {
     //拥有eth的能力，打开评论对话框
     let inputs = document.querySelectorAll(".scbrf-comments-container input");
     if (window.ethereum) {
-      [...inputs].forEach(
-        (c) =>
-          (c.onkeydown = (e) => {
-            if (e.keyCode == 13) {
-              this.reply(e);
-            }
-          })
-      );
+      [...inputs].forEach((c) => {
+        c.setAttribute("type", "text");
+        c.setAttribute("enterkeyhint", "go");
+        c.onkeydown = (e) => {
+          console.log("input keydown", e.keyCode);
+          if (e.keyCode == 13) {
+            this.reply(e);
+          }
+        };
+      });
     } else {
       [...inputs].forEach((i) => (i.style.display = "none"));
     }

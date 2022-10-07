@@ -102,7 +102,7 @@ class Execute {
     const { pathname } = new URL(request.url);
     const [_, ipns, uuid] = pathname.split("/");
     if (!ipns || !uuid) return error(403, "Bad");
-    const articleid = `${ipns}/${uuid}`;
+    const articleid = `${ipns}/${uuid}`.toLowerCase();
     const key = `_cs/${articleid}`;
     if (request.method === "GET") {
       return this.fetchFromKVStore(env, articleid, key);

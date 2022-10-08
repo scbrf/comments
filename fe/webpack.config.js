@@ -5,7 +5,7 @@ module.exports = {
   entry: "./src/index.js",
   watch: true,
   output: {
-    filename: "comments.js",
+    filename: "__scbrf_comments.js",
     path: path.resolve(__dirname, "assets"),
   },
   plugins: [

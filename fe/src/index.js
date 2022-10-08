@@ -19,12 +19,11 @@ require("moment/locale/zh-cn");
  */
 
 // From: https://stackoverflow.com/questions/8523200/javascript-get-current-filescript-path
-var retrieveURL = function (filename) {
+var retrieveURL = function (filaname) {
   var scripts = document.getElementsByTagName("script");
   if (scripts && scripts.length > 0) {
     for (var i in scripts) {
-      console.log(scripts[i].src);
-      const pos = scripts[i].src.indexOf("comments.js");
+      const pos = scripts[i].src.indexOf(filaname);
       if (pos > 0) {
         return scripts[i].src.substring(0, pos);
       }
@@ -35,7 +34,7 @@ var retrieveURL = function (filename) {
 class ScbrfComments {
   constructor(cfg) {
     this.config = cfg;
-    this.scriptPath = retrieveURL("comments.js");
+    this.scriptPath = retrieveURL("__scbrf_comments.js");
     console.log(this.scriptPath);
   }
 

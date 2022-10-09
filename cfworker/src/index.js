@@ -66,7 +66,7 @@ class Execute {
         }`
       );
       const address = ethers.utils.recoverAddress(digest, sign);
-      if (address.toLocaleLowerCase() !== from.toLocaleLowerCase()) {
+      if (address.toLowerCase() !== from.toLowerCase()) {
         console.log(`expect ${from} got ${address}`);
         throw new Error("sign mismatch");
       }
@@ -102,7 +102,7 @@ class Execute {
     const { pathname } = new URL(request.url);
     const [_, ipns, uuid] = pathname.split("/");
     if (!ipns || !uuid) return error(403, "Bad");
-    const articleid = `${ipns}/${uuid}`.toLowerCase();
+    const articleid = `${ipns}/${uuid}`;
     const key = `_cs/${articleid}`;
     if (request.method === "GET") {
       return this.fetchFromKVStore(env, articleid, key);

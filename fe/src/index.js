@@ -117,7 +117,9 @@ class ScbrfComments {
     const base = this.config.entry || "https://comments.scbrf.workers.dev";
     this.URL = `${base}/${this.config.planetid}/${this.config.articleid}`;
     if (this.config.planetid && this.config.articleid) {
-      this.updateUI(window.__INIT_COMMENTS__);
+      if (window.__INIT_COMMENTS__) {
+        this.updateUI(window.__INIT_COMMENTS__);
+      }
       try {
         const comments = await axios.get(
           this.URL + "?seed=" + new Date().getTime()

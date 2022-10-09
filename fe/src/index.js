@@ -119,7 +119,9 @@ class ScbrfComments {
     if (this.config.planetid && this.config.articleid) {
       this.updateUI(window.__INIT_COMMENTS__);
       try {
-        comments = await axios.get(this.URL + "?seed=" + new Date().getTime());
+        const comments = await axios.get(
+          this.URL + "?seed=" + new Date().getTime()
+        );
         this.updateUI(comments.data);
       } catch (ex) {
         console.log("error", ex.message);

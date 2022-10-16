@@ -133,6 +133,11 @@ class ScbrfComments {
 
   async init() {
     console.log("scbrf config", this.config);
+    if (!window.ethereum && window.scbrf) {
+      //主动请求初始化钱包
+      scbrf.postMessage("init");
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    }
     this.initAccount();
     this.initUI();
     this.initData();
